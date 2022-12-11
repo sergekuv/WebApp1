@@ -1,0 +1,64 @@
+﻿@page
+@model WebApp1.Pages.Messages.IndexModel
+
+@{
+    ViewData["Title"] = "Messages";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Messages</h1>
+
+<p>
+    <a asp-page="Create" asp-route-id="@Model.FriendRecordId">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Message[0].Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message[0].SenderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message[0].Sender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message[0].RecipientId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message[0].Recipient)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Message) {
+        <tr>
+            <td>
+
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sender.Id)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sender.Name)
+                </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Recipient.Id)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Recipient.Name)
+                </td>
+
+@*            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>*@
+        </tr>
+}
+    </tbody>
+</table>
